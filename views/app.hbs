@@ -1,0 +1,110 @@
+<script>
+    var userShop = '{{ shop }}'
+</script>
+<h2 class="text-center">Shopify Orders App </h2>
+<hr>
+<div class="row">
+{{!--     <div class="col-md-3 pb-4">
+        <div class="card border border-primary">
+            <div class="card-body">
+                <div class="form-group">
+                    <label for="title">Tittle</label>
+                    <input type="text" class="form-control" id="title" aria-describedby="title" placeholder="Enter title">
+
+                </div>
+                <div class="form-group">
+                    <label for="body">Body</label>
+                    <input type="text" class="form-control" id="body_html" aria-describedby="body" placeholder="Enter body">
+
+                </div>
+                <div class="form-group">
+                    <label for="vendor">Vendor</label>
+                    <input type="text" class="form-control" id="vendor" aria-describedby="vendor" placeholder="Enter vendor">
+
+                </div>
+                <div class="form-group">
+                    <label for="producttype">Product Type</label>
+                    <input type="text" class="form-control" id="producttype" aria-describedby="producttype" placeholder="Enter product type">
+
+                </div>
+                <div class="form-group">
+                    <label for="tags">Tags</label>
+                    <input type="text" class="form-control" id="tags" aria-describedby="tags" placeholder="Enter tags">
+
+                </div>
+
+                <!-- <button class="btn btn-primary" onclick="create('{{shop}}')">Create Product</button> -->
+                <button class="btn btn-primary" onclick="createByUser('{{shop}}')">Create Product</button>
+                <button class="btn btn-info float-right" onclick="clearFields()">Clear</button>
+            </div>
+
+
+
+        </div>
+    </div> --}}
+
+    <div class="col-md-12">
+        <div class="card border border-primary">
+            <div class="card-body">
+                <button class="btn btn-primary mb-4" onclick="backShop('{{shopParam}}')">Back To {{shopParam}}</button>
+                <table id="products" class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">Order Id</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Confirmation</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Shop</th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each orders}}
+                        <tr>
+                            <td scope="col">{{this.id}}</td>
+                            <td scope="col">{{this.email}}</td>
+                            <td scope="col">{{this.confirmed}}</td>
+                            <td scope="col">{{this.name}}</td>
+                            <td scope="col">{{this.total_price_usd}}</td>
+                            <td scope="col">{{../shopParam}}</td>
+                            <td scope="col"> <button class="btn btn-primary"  onclick="goPaypal('{{this.id}}','{{../shopParam}}')">Pass</button></td>
+                        </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<hr>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalCenterTitle">Add Image</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" id="uploadImageId">
+                <input type="file" id="productImage">
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" onclick="uploadImage()">Upload</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+</script>

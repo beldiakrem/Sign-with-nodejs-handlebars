@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+.container{
+       margin-top: 15px;
+}
+p {
+   line-height: 1rem;
+   margin-top: 10px;
+}
+.card {
+   padding: 20px;
+}
+.form-group {
+   input {
+      margin-bottom: 20px;
+   }
+}
+
+   .fade-enter,
+   .fade-leave-to {
+      opacity: 0;
+   }
+   
+   .wallpaper-register {
+      
+         
+      background-size: cover;
+      height: 100%;
+      position: absolute;
+      width: 100%;
+      z-index: -1;
+   }
+   h1 {
+      margin-bottom: 1.5rem;
+   }
+}
+.error {
+   animation-name: errorShake;
+   animation-duration: 0.3s;
+}
+@keyframes errorShake {
+   0% {
+      transform: translateX(-25px);
+   }
+   25% {
+      transform: translateX(25px);
+   }
+   50% {
+      transform: translateX(-25px);
+   }
+   75% {
+      transform: translateX(25px);
+   }
+   100% {
+      transform: translateX(0);
+   }
+}
+.form-control{
+   width: 85%;
+   margin-bottom: 5%;
+}
+</style>
+</head>
+<body>
+
+<div id="app">
+
+   <div class="login-page">
+      <transition name="fade">
+         <div v-if="!registerActive" class="wallpaper-login"></div>
+      </transition>
+      <div class="wallpaper-register"></div>
+
+      <div class="container">
+         <div class="row">
+            <div class="col-lg-4 col-md-6 col-sm-8 mx-auto">
+
+               <div v-else class="card register" v-bind:class="{ error: emptyFields }">
+                  <h1>Sign Up</h1>
+                  <form class="form-group" method="POST" onsubmit="validerSignUp()">
+                     <input  id ="firstName" v-model="name" type="firstName" class="form-control" placeholder="firstName" required>
+                     <input id ="lastName" v-model="name" type="lastName" class="form-control" placeholder="lastName" required>
+                     <input id ="email"  v-model="emailReg" type="email" class="form-control" placeholder="Email" required>
+                     <input id ="password"  v-model="passwordReg" type="password" class="form-control" placeholder="Password" required>
+                     <input id ="password"  v-model="confirmReg" type="password" class="form-control" placeholder="Confirm Password" required>
+                     <input type="submit" class="primay button-primary" >
+                     <p>Already have an account? <a href="#" @click="registerActive = !registerActive, emptyFields = false" onclick="signin()">Sign in here</a>
+                     </p>
+                  </form>
+               </div>
+            </div>
+         </div>
+
+      </div>
+   </div>
+
+</div>
+</body>
+</html>
